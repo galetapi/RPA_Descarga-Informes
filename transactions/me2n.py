@@ -76,16 +76,16 @@ def me2n(key,log):
 
     #Nombre del archivo (fecha y hora actual)
     date = datetime.today().strftime("%Y-%m-%d")
-    nameFile = str(date + transaction)
-    session.findById("wnd[1]/usr/ctxtDY_FILENAME").text = nameFile
+    nameFile = str(date +" "+ transaction)
+    session.findById("wnd[1]/usr/ctxtDY_FILENAME").text = nameFile+ ".xls"
     session.findById("wnd[1]/usr/ctxtDY_FILENAME").caretPosition = 15
     session.findById("wnd[1]/tbar[0]/btn[0]").press()
 
   except:
     print(sys.exc_info([0]))
-    log.Level='ERROR'
-    log.ProcesoInterno='ME2N'
-    log.Mensaje='Variante no encontrada'
+    log.level = 'ERROR'
+    log.procesointerno = 'ME2N'
+    log.mensaje = 'Variante no encontrada'
     log.post()
 
 

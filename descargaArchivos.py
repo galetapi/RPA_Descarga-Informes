@@ -15,7 +15,6 @@ window.geometry("500x300")
 window.title("Descarga de archivo")
 
 def selectRoute():
-  
     global path
     global route
     window.route = filedialog.askopenfilename(title='Select Route')

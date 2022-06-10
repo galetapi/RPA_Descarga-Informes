@@ -13,8 +13,8 @@ def main(key):
     tablero(key,Log)
     mb52(key,Log)
     me2n(key,Log)
-    log.Level = 'INFO'
-    log.ProcesoInterno = 'Fin Transaccion'
-    log.Mensaje = 'Fin Transaccion'
-    log.FinTransaccion = datetime.now()
+    log.level = 'INFO'
+    log.procesointerno = 'Fin Transaccion'
+    log.mensaje = 'Fin Transaccion'
+    log.fintransaccion = datetime.now()
     log.postFin()      

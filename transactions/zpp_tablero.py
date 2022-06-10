@@ -2,7 +2,7 @@ import sys
 import win32com.client as win32
 from datetime import datetime
 from openpyxl import load_workbook
-#from descargaArchivos import route
+
 
 def tablero(key,log):
 
@@ -44,7 +44,7 @@ def tablero(key,log):
     errorMail = sheet.cell(row=1,column=6).value
   
     date = datetime.today().strftime("%Y-%m-%d")
-    nameFile = str(date + transaction)
+    nameFile = str(date +" "+ transaction)
 
     session.findById("wnd[0]").maximize()
     session.findById("wnd[0]/tbar[0]/okcd").text = nameTransaction
@@ -87,7 +87,7 @@ def tablero(key,log):
     session.findById("wnd[1]/usr/cmbG_LISTBOX").key = "10"
     session.findById("wnd[1]/tbar[0]/btn[0]").press()
     session.findById("wnd[1]/usr/ctxtDY_PATH").text = route
-    session.findById("wnd[1]/usr/ctxtDY_FILENAME").text = nameFile
+    session.findById("wnd[1]/usr/ctxtDY_FILENAME").text = nameFile+ ".xls"
     session.findById("wnd[1]/usr/ctxtDY_FILENAME").caretPosition = 22
     session.findById("wnd[1]/tbar[0]/btn[0]").press()
     session.findById("wnd[0]/tbar[0]/btn[12]").press()
@@ -95,9 +95,9 @@ def tablero(key,log):
 
   except:
     print(sys.exc_info([0]))
-    log.Level='ERROR'
-    log.ProcesoInterno='ZPP_TABLERO'
-    log.Mensaje='Variante no encontrada'
+    log.level = 'ERROR'
+    log.procesointerno = 'ZPP_TABLERO'
+    log.mensaje = 'Variante no encontrada'
     log.post()
 
 

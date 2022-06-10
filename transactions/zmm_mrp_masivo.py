@@ -8,10 +8,10 @@ def masivo(key,log):
 
   try:
 
-    log.FechaInicio = datetime.now()
-    log.Level = 'INFO'
-    log.ProcesoInterno = 'Inicio Transaccion'
-    log.Mensaje = 'Inicio Transaccion'
+    log.fechainicio = datetime.now()
+    log.level = 'INFO'
+    log.procesointerno = 'Inicio Transaccion'
+    log.mensaje = 'Inicio Transaccion'
     log.post()      
 
 
@@ -52,7 +52,7 @@ def masivo(key,log):
     errorMail = sheet.cell(row=1,column=6).value
 
     date = datetime.today().strftime("%Y-%m-%d")
-    nameFile = str(date + transaction)
+    nameFile = str(date +" "+ transaction)
 
     session.findById("wnd[0]").maximize()
     session.findById("wnd[0]/tbar[0]/okcd").text = nameTransaction
@@ -81,7 +81,7 @@ def masivo(key,log):
     session.findById("wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[1,0]").setFocus()
     session.findById("wnd[1]/tbar[0]/btn[0]").press()
     session.findById("wnd[1]/usr/ctxtDY_PATH").text = route
-    session.findById("wnd[1]/usr/ctxtDY_FILENAME").text = nameFile
+    session.findById("wnd[1]/usr/ctxtDY_FILENAME").text = nameFile + ".xls"
     session.findById("wnd[1]/usr/ctxtDY_FILENAME").caretPosition = 8
     session.findById("wnd[1]/tbar[0]/btn[0]").press()
     session.findById("wnd[0]/tbar[0]/btn[12]").press()
@@ -89,9 +89,9 @@ def masivo(key,log):
 
   except:
     print(sys.exc_info([0]))
-    log.Level = 'ERROR'
-    log.ProcesoInterno = 'ZMM_MRP_MASIVO'
-    log.Mensaje = 'Variante no encontrada'
+    log.level = 'ERROR'
+    log.procesointerno = 'ZMM_MRP_MASIVO'
+    log.mensaje = 'Variante no encontrada'
     log.post()
 
   finally:

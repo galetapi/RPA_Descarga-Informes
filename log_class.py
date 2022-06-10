@@ -9,41 +9,41 @@ from random import randint
 class log():
 #metodo inicializar
     def __init__(self):
-        self.Fecha=''
-        self.FechaInicio=''
-        self.Ambiente='DEV'
-        self.Ip=socket.gethostbyname(socket.gethostname()) # nombre del portatil o pc
-        self.Usuario=socket.gethostname()
-        self.Tecnologia='SAP_SCRIPTING'
-        self.Proceso='Compras'
-        self.Proyecto='Descarga de Informes'
-        self.Level=''
-        self.ProcesoInterno=''
-        self.Mensaje=''
-        self.FinTransaccion=''
-        self.Idtransaccion=''
-        self.Duracion=''
+        self.fecha=''
+        self.fechainicio=''
+        self.ambiente='DEV'
+        self.ip=socket.gethostbyname(socket.gethostname()) # nombre del portatil o pc
+        self.usuario=socket.gethostname()
+        self.tecnologia='SAP_SCRIPTING'
+        self.proceso='Compras'
+        self.proyecto='Descarga de Informes'
+        self.level=''
+        self.procesointerno=''
+        self.mensaje=''
+        self.fintransaccion=''
+        self.idtransaccion=''
+        self.duracion=''
 
 
     def post(self):
                 
         rn=randint(10000, 99999)    
-        self.Idtransaccion=datetime.now().strftime("%H:%M:%S-")+str(rn)    
+        self.idtransaccion = datetime.now().strftime("%H%M%S-")+str(rn)    
         headers = {'Content-type': 'application/json','Authorization': 'Basic ZWxhc3RpYzpKTkFuOURBc1VObjMxOU5uRVpabDFneEI='
         }
         url = "https://linea-directa.es.us-east-1.aws.found.io:9243/automatizacion/_doc/"
         data = {
-                'Fecha': datetime.now().strftime("%Y-%m-%dT%H:%M:%S.000-0500"),
-                'Ambiente': self.Ambiente,
-                'Ip': self.Ip,
-                'Usuario': self.Usuario,
-                'Tecnologia': self.Tecnologia,
-                'Proceso': self.Proceso,
-                'Proyecto': self.Proyecto,
-                'Level': self.Level,
-                'ProcesoInterno': self.ProcesoInterno,
-                'Mensaje': self.Mensaje,
-                'Idtransaccion': self.Idtransaccion
+                'fecha': datetime.now().strftime("%Y-%m-%dT%H:%M:%S.000-0500"),
+                'ambiente': self.ambiente,
+                'ip': self.ip,
+                'usuario': self.usuario,
+                'tecnologia': self.tecnologia,
+                'proceso': self.proceso,
+                'proyecto': self.proyecto,
+                'level': self.level,
+                'procesointerno': self.procesointerno,
+                'mensaje': self.mensaje,
+                'idtransaccion': self.idtransaccion
                 }
         
         postRequest = requests.post(url, data=json.dumps(data), headers=headers)
@@ -51,27 +51,27 @@ class log():
 
     def postFin(self):
 
-        self.Duracion = self.FinTransaccion - self.FechaInicio 
-        self.Duracion = int(self.Duracion.total_seconds()) 
-        rn=randint(10000, 99999)    
-        self.Idtransaccion=datetime.now().strftime("%H:%M:%S-")+str(rn)    
+        self.duracion = self.fintransaccion - self.fechainicio 
+        self.duracion = int(self.duracion.total_seconds()) 
+        rn = randint(10000, 99999)    
+        self.idtransaccion=datetime.now().strftime("%H%M%S-")+str(rn)    
         headers = {'Content-type': 'application/json','Authorization': 'Basic ZWxhc3RpYzpKTkFuOURBc1VObjMxOU5uRVpabDFneEI='
         }
         url = "https://linea-directa.es.us-east-1.aws.found.io:9243/automatizacion/_doc/"
         data = {
-                'Fecha': self.FechaInicio.strftime("%Y-%m-%dT%H:%M:%S.000-0500"),
-                'Ambiente': self.Ambiente,
-                'Ip': self.Ip,
-                'Usuario': self.Usuario,
-                'Tecnologia': self.Tecnologia,
-                'Proceso': self.Proceso,
-                'Proyecto': self.Proyecto,
-                'Level': self.Level,
-                'ProcesoInterno': self.ProcesoInterno,
-                'Mensaje': self.Mensaje,
-                'Idtransaccion': self.Idtransaccion,
-                'Duracion': self.Duracion,
-                'FinTransaccion':self.FinTransaccion.strftime("%Y-%m-%dT%H:%M:%S.000-0500")
+                'fecha': self.fechainicio.strftime("%Y-%m-%dT%H:%M:%S.000-0500"),
+                'ambiente': self.ambiente,
+                'ip': self.ip,
+                'usuario': self.usuario,
+                'tecnologia': self.tecnologia,
+                'proceso': self.proceso,
+                'proyecto': self.proyecto,
+                'level': self.level,
+                'procesointerno': self.ProcesoInterno,
+                'mensaje': self.mensaje,
+                'idtransaccion': self.idtransaccion,
+                'duracion': self.duracion,
+                'fintransaccion':self.fintransaccion.strftime("%Y-%m-%dT%H:%M:%S.000-0500")
                 }
         
         postRequest = requests.post(url, data=json.dumps(data), headers=headers)
